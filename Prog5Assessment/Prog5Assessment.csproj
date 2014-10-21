@@ -139,8 +139,10 @@
       <DependentUpon>201410192055216_CustomPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\CustomPrices.cs" />
     <Compile Include="Models\DatabaseSetup.cs" />
+    <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

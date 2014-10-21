@@ -17,6 +17,7 @@ namespace Prog5Assessment.Models
         public DateTime DateStart { get; set; }
 
         [Column(TypeName = "DateTime")]
+        // waarvoor zijn die column namen? -Wouter
         public DateTime DateEnd { get; set; }
 
     }

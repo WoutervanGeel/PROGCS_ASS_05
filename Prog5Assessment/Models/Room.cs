@@ -11,6 +11,5 @@ namespace Prog5Assessment.Models
         public int Id { get; set; }
         public int MaxPersons { get; set; }
         public int MinPrice { get; set; }
-
     }
 }
