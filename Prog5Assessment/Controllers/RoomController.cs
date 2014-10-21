@@ -24,6 +24,22 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpGet]
+        public ActionResult Delete(int id = -1)
+        {
+            var room = context.Room.SingleOrDefault(x => x.Id == id);
+
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+            context.Room.Remove(room);
+            context.SaveChanges();
+            Response.Redirect("~/Room/");
+            return null;
+        }
+
+        [HttpGet]
         public ActionResult Edit(int id = -1)
         {
             var room = context.Room.SingleOrDefault(x => x.Id == id);
@@ -44,10 +60,18 @@ namespace Prog5Assessment.Controllers
                 return HttpNotFound();
             }
 
+            // limit persons
+            if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
+            {
+                // error
+                return View();
+            }
+
             dbRoom.MaxPersons = room.MaxPersons;
             dbRoom.MinPrice = room.MinPrice;
             context.SaveChanges();
-            return View(room);
+            Response.Redirect("~/Room/");
+            return null;
         }
 
         [HttpGet]
