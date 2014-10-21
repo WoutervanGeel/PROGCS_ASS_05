@@ -24,6 +24,18 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpGet]
+        public ActionResult Edit(int id = -1)
+        {
+            var room = context.Room.SingleOrDefault(x => x.Id == id);
+
+            if(room == null)
+            {
+                return HttpNotFound();
+            }
+            return View(room);
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
