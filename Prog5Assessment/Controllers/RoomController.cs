@@ -35,6 +35,21 @@ namespace Prog5Assessment.Controllers
             return View(room);
         }
 
+        [HttpPost]
+        public ActionResult Edit(int id = -1, Room room)
+        {
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+            dbRoom.MaxPersons = room.MaxPersons;
+            dbRoom.MinPrice = room.MinPrice;
+            context.SaveChanges();
+            return View(room);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
