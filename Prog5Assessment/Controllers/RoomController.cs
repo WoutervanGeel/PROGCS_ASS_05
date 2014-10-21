@@ -32,9 +32,26 @@ namespace Prog5Assessment.Controllers
         [HttpPost]
         public ActionResult Create(Models.Room room)
         {
+            // limit persons
+            if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
+            {
+                // error
+                return View();
+            }
+
+            // max rooms check
+            if(context.Room.Count() > 12)
+            {
+                // error
+                return View();
+            }
+
+            // no errors
             context.Room.Add(room);
             context.SaveChanges();
-            return View();
+            Response.Redirect("~/Room/");
+            return null;
         }
+
     }
 }
