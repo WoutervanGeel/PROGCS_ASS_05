@@ -36,20 +36,5 @@ namespace Prog5Assessment.Controllers
             context.SaveChanges();
             return View();
         }
-
-        [HttpGet]
-        public ActionResult NewRoom()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult NewRoom(Models.Room room)
-        {
-            //In deze methode kom je op het moment dat je op Submit klikt op de room pagina newRoom
-            //room.Id = 5;
-            //Models.DatabaseSetup
-            return View();
-        }
     }
 }
