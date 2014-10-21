@@ -21,9 +21,35 @@ namespace Prog5Assessment.Controllers
             return View(context.Booking.ToList());
         }
 
-        public ActionResult Edit()
+        [HttpGet]
+        public ActionResult Edit(int id = -1)
         {
-            return View(context.Booking.ToList());
+            var booking = context.Booking.SingleOrDefault(x => x.Id == id);
+
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Booking booking, int id = -1)
+        {
+            var dbBooking = context.Booking.SingleOrDefault(x => x.Id == id);
+            if (dbBooking == null)
+            {
+                return HttpNotFound();
+            }
+
+            dbBooking.Price = booking.Price;
+            dbBooking.StartDate = booking.StartDate;
+            dbBooking.EndDate = booking.EndDate;
+            dbBooking.AccountNr = booking.AccountNr;
+            dbBooking.InvoiceAddress = booking.InvoiceAddress;
+            dbBooking.BookedRoom = booking.BookedRoom;
+            context.SaveChanges();
+            return View(dbBooking);
         }
     }
 }

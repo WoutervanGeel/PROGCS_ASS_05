@@ -9,9 +9,6 @@ namespace Prog5Assessment.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         private DatabaseSetup context;
 
         public HomeController()
@@ -24,6 +21,5 @@ namespace Prog5Assessment.Controllers
             var testing = context.Room.ToList();
             return View();
         }
-
     }
 }

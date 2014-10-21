@@ -14,6 +14,80 @@
         <legend>Booking</legend>
 
         @Html.HiddenFor(model => model.Id)
+        <div class="editor-label">
+            Select your desired room: 
+        </div>
+        <div class="editor-field">
+            <!-- hoe kan ik hier een dropdown menu krijgen van alle beschikbare kames? -->
+        </div>
+
+        @for (int i = 0; i < 5 /* MaxPersons */; i++)
+        {
+            
+            <!-- hoe kan ik hier alle gasten laten aanmaken/invullen/weergeven -->
+            <div class="editor-label">
+                <!-- Html.LabelFor(new Prog5Assessment.Models.DatabaseSetup().Guest.FirstName); dit werkt niet -->
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+            <div class="editor-label">
+
+            </div>
+            <div class="editor-field">
+
+            </div>
+        }
+
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Price)
