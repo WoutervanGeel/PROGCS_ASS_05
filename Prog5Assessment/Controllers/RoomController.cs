@@ -33,7 +33,7 @@ namespace Prog5Assessment.Controllers
         public ActionResult Create(Models.Room room)
         {
             // limit persons
-            if (room.MaxPersons != 2 || room.MaxPersons != 3 || room.MaxPersons != 5)
+            if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
             {
                 // error
                 return View();
@@ -43,30 +43,15 @@ namespace Prog5Assessment.Controllers
             if(context.Room.Count() > 12)
             {
                 // error
-
                 return View();
             }
 
             // no errors
             context.Room.Add(room);
             context.SaveChanges();
-            // go back to list
-            return Index();
+            Response.Redirect("~/Room/");
+            return null;
         }
 
-        [HttpGet]
-        public ActionResult NewRoom()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult NewRoom(Models.Room room)
-        {
-            //In deze methode kom je op het moment dat je op Submit klikt op de room pagina newRoom
-            //room.Id = 5;
-            //Models.DatabaseSetup
-            return View();
-        }
     }
 }
