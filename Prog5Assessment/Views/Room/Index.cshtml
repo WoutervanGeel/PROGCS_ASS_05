@@ -1,5 +1,39 @@
-﻿@{
+﻿@model IEnumerable<Prog5Assessment.Models.Room>
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPersons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxPersons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Custom prices", "Prices", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

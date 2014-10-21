@@ -8,10 +8,13 @@ namespace Prog5Assessment.Models
 {
     public class Room
     {
+        [Key]
         public int Id { get; set; }
-        [Display(Name = "Maximal number of persons: ")]
+
+        [Display(Name = "Maximal number of persons")]
         public int MaxPersons { get; set; }
-        [Display(Name="Minimal price per night: ")]
-        public int MinPrice { get; set; }
+
+        [Display(Name="Minimal price per night")]
+        public decimal MinPrice { get; set; }
     }
 }

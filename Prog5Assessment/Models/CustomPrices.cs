@@ -9,16 +9,19 @@ namespace Prog5Assessment.Models
 {
     public class CustomPrices
     {
+        [Key]
         public int Id { get; set; }
 
-        public int RoomId { get; set; }
+        public Room Room { get; set; }
 
-        [Column(TypeName="DateTime")]
+        [Display(Name = "Start date")]
         public DateTime DateStart { get; set; }
 
-        [Column(TypeName = "DateTime")]
-        // waarvoor zijn die column namen? -Wouter
+        [Display(Name = "End date")]
         public DateTime DateEnd { get; set; }
+
+        [Display(Name = "Price")]
+        public decimal Price { get; set; }
 
     }
 }

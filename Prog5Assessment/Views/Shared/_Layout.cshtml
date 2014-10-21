@@ -10,9 +10,9 @@
 <body>
     @RenderBody()
 
+    @Html.ActionLink("Rooms editor", "Index", "Room")
+
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-
-    @Html.ActionLink("Make a new room", "NewRoom", "Room");
 </body>
 </html>
