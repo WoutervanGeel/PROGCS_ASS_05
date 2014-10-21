@@ -17,6 +17,6 @@ namespace Prog5Assessment.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string InvoiceAddress { get; set; }
-        public int AccountNr { get; set; } // todo: Hebben we niet nodig toch?
+        public int AccountNr { get; set; }
     }
 }
