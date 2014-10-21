@@ -14,6 +14,8 @@ namespace Prog5Assessment.Models
         }
 
         public DbSet<Room> Room { get; set; }
+        public DbSet<Guest> Guest { get; set; }
+        public DbSet<Booking> Booking { get; set; }
         public DbSet<CustomPrices> CustomPrices { get; set; }
 
     }
