@@ -36,10 +36,10 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id = -1, Room room)
+        public ActionResult Edit(Room room, int id = -1)
         {
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
-            if (room == null)
+            if (dbRoom == null)
             {
                 return HttpNotFound();
             }
