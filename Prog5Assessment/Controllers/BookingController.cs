@@ -175,19 +175,19 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpGet]
-        public ActionResult Overview1()
+        public ActionResult Overview()
         {
-            Session["overviewStep"] = 1;
+            ViewBag.OverviewTable = "";
             return View();
         }
 
         [HttpPost]
-        public ActionResult Overview1(Booking bookingFilter)
+        public ActionResult Overview(Booking bookingFilter)
         {
-            TempData["bookingOverview"] = bookingFilter;
-            Session["overviewStep"] = 2;
-            Response.Redirect("~/Booking/Overview2");
-            return null;
+            // datum1 =  bookingFilter.StartDate;
+            // datum2 =  bookingFilter.StartDate;
+            ViewBag.OverviewTable = "RESULT KOMT HIER";
+            return View();
         }
         [HttpGet]
         public ActionResult Overview2()
