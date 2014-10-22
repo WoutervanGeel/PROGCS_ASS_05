@@ -1,0 +1,36 @@
+﻿@model Prog5Assessment.Models.Booking
+
+@{
+    ViewBag.Title = "Step2";
+}
+
+<h2>Step2</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Booking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.BookedRoom)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RoomId", ViewData["rooms"] as List<SelectListItem>
+)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
