@@ -47,7 +47,7 @@ namespace Prog5Assessment.Controllers
         {
             // checks
 
-
+            Session["booking"] = bookingInfo;
             Session["bookingStartDate"] = bookingInfo.StartDate;
             Session["bookingStartDate"] = bookingInfo.EndDate;
             Session["bookingGuestAmount"] = bookingInfo.Guests;
@@ -81,24 +81,35 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Step2(FormCollection collection)
+        public ActionResult Step2(EventArgs e)
         {
             CheckStep(2);
-            int roomId = 0;
+            String roomId = "";
+
+            // generate list
+            List<SelectListItem> li = new List<SelectListItem>();
+            if (context.Room.ToList().Count() == 0)
+            {
+                li.Add(new SelectListItem { Text = "No room available", Value = "-1" });
+            }
+            else
+            {
+                li.Add(new SelectListItem { Text = "Select ...", Value = "-1" });
+                foreach (var room in context.Room.ToList())
+                {
+                    li.Add(new SelectListItem { Text = room.Name, Value = "" + room.Id });
+                }
+            }
+            ViewData["rooms"] = li;
 
             // error checks
-            try
-            {
-                roomId = (int)collection.GetValue("RoomId").RawValue;
-            }
-            catch (Exception ex)
-            {
-                return View();
-            }
 
+            roomId = Request.Form["RoomId"];
 
             // success
             Session["bookingRoomId"] = roomId;
+
+            Session["bookingStep"] = 3;
             Response.Redirect("~/Booking/Step3");
             return null;
         }
@@ -106,19 +117,70 @@ namespace Prog5Assessment.Controllers
         [HttpGet]
         public ActionResult Step3()
         {
+            ViewData["NumberOfPersons"] = Session["bookingGuestAmount"];
             CheckStep(3);
             return View();
         }
 
         [HttpPost]
-        public ActionResult Step3(FormCollection collection)
+        public ActionResult Step3(EventArgs e)
         {
+            ViewData["NumberOfPersons"] = Session["bookingGuestAmount"];
             CheckStep(3);
-            
+
+            Session["GuestGender"] = Request.Form.GetValues("Gender");
+            Session["GuestFirstName"] = Request.Form.GetValues("FirstName");
+            Session["GuestInfix"] = Request.Form.GetValues("Infix");
+            Session["LastName"] = Request.Form.GetValues("LastName");
+            Session["GuestGender"] = Request.Form.GetValues("Gender");
+
             // success
-            Session["room"] = 0;
-            Response.Redirect("~/Booking/Step3");
+            Session["bookingStep"] = 4;
+            Response.Redirect("~/Booking/Step4");
             return null;
+        }
+
+
+        [HttpGet]
+        public ActionResult Step4()
+        {
+            CheckStep(4);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Step4(Booking bookingInfo)
+        {
+            CheckStep(4);
+            // success
+            bookingInfo.StartDate = (DateTime)Session["bookingStartDate"];
+            bookingInfo.EndDate = (DateTime)Session["bookingEndDate"];
+            bookingInfo.Guests = (int)Session["bookingGuestAmount"];
+            
+            // add room
+            bookingInfo.BookedRoom = context.Room.Where(c => c.Id == (int)Session["bookingRoomId"]).ToList()[0];
+            context.Booking.Add(bookingInfo);
+            context.SaveChanges();
+            // add guests
+            
+            for(int i = 0; i < ((int)Session["bookingGuestAmount"])-1; i++)
+            {
+                
+            }
+
+          
+
+            Session["bookingStep"] = 5;
+            Response.Redirect("~/Booking/Step5");
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult Step5()
+        {
+            CheckStep(5);
+            Session["bookingStep"] = 1;
+            return View();
         }
 
         [HttpGet]
@@ -189,12 +251,6 @@ namespace Prog5Assessment.Controllers
             ViewBag.OverviewTable = "RESULT KOMT HIER";
             return View();
         }
-        [HttpGet]
-        public ActionResult Overview2()
-        {
-            context.Booking.
-            context.Room.ToList().Where()
-            return View();
-        }
+        
     }
 }

@@ -1,0 +1,116 @@
+﻿@model Prog5Assessment.Models.Booking
+
+@{
+    ViewBag.Title = "Step4";
+}
+
+<h2>Step4</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Extra information</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressStreetNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressStreetNumber)
+            @Html.ValidationMessageFor(model => model.AddressStreetNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressPostal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressPostal)
+            @Html.ValidationMessageFor(model => model.AddressPostal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressStreet)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressStreet)
+            @Html.ValidationMessageFor(model => model.AddressStreet)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressPlace)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressPlace)
+            @Html.ValidationMessageFor(model => model.AddressPlace)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressCountry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressCountry)
+            @Html.ValidationMessageFor(model => model.AddressCountry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddressStreetNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddressStreetNumber)
+            @Html.ValidationMessageFor(model => model.InvoiceAddressStreetNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddressPostal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddressPostal)
+            @Html.ValidationMessageFor(model => model.InvoiceAddressPostal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddressStreet)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddressStreet)
+            @Html.ValidationMessageFor(model => model.InvoiceAddressStreet)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddressPlace)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddressPlace)
+            @Html.ValidationMessageFor(model => model.InvoiceAddressPlace)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddressCountry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddressCountry)
+            @Html.ValidationMessageFor(model => model.InvoiceAddressCountry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountNr)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountNr)
+            @Html.ValidationMessageFor(model => model.AccountNr)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
