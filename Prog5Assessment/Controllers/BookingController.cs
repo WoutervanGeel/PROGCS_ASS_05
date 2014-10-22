@@ -77,9 +77,12 @@ namespace Prog5Assessment.Controllers
         public ActionResult Step2(FormCollection collection)
         {
             CheckStep(2);
+            int roomId = 0;
             try
             {
-                var test = collection.GetValue("RoomId");
+                var test = collection.GetValue("RoomId").RawValue;
+                var njvfnhbfh = 83773;
+
             }
             catch (Exception ex)
             {
