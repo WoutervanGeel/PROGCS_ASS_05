@@ -23,6 +23,14 @@ namespace Prog5Assessment.Controllers
             return View(context.Room.ToList());
         }
 
+        public ActionResult PriceList(int id = -1)
+        {
+
+           // var room = context.Room.SingleOrDefault(x => x.Id == id);
+
+            return View(context.Room.ToList());
+        }
+
         [HttpGet]
         public ActionResult Delete(int id = -1)
         {
