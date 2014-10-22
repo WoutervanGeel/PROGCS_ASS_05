@@ -238,7 +238,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Room\IndexOld.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\CustomPrice\Create.cshtml" />
     <Content Include="Views\CustomPrice\Index.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
@@ -247,6 +246,9 @@
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Booking\Step2.cshtml" />
+    <Content Include="Views\Booking\Overview1.cshtml" />
+    <Content Include="Views\Booking\Overview2.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
