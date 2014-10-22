@@ -1,0 +1,137 @@
+﻿@model Prog5Assessment.Models.Booking
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Booking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InvoiceAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InvoiceAddress)
+            @Html.ValidationMessageFor(model => model.InvoiceAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountNr)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountNr)
+            @Html.ValidationMessageFor(model => model.AccountNr)
+        </div>
+        @{
+            for (int i = 1; i <= (int)ViewData["NumberOfPersons"]; i++)
+            {
+                <legend> Guest @i </legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].FirstName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].FirstName)
+                    @Html.ValidationMessageFor(model => model.guests[i].FirstName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].Infix)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].Infix)
+                    @Html.ValidationMessageFor(model => model.guests[i].Infix)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].LastName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].LastName)
+                    @Html.ValidationMessageFor(model => model.guests[i].LastName)
+                </div>
+            
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].DateOfBirth)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].DateOfBirth)
+                    @Html.ValidationMessageFor(model => model.guests[i].DateOfBirth)
+                </div>
+            
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].Address)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].Address)
+                    @Html.ValidationMessageFor(model => model.guests[i].Address)
+                </div>
+            
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].Postalcode)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].Postalcode)
+                    @Html.ValidationMessageFor(model => model.guests[i].Postalcode)
+                </div>
+            
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].Location)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].Location)
+                    @Html.ValidationMessageFor(model => model.guests[i].Location)
+                </div>
+            
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.guests[i].Email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.guests[i].Email)
+                    @Html.ValidationMessageFor(model => model.guests[i].Email)
+                </div>
+            }
+        }
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

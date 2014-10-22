@@ -51,5 +51,32 @@ namespace Prog5Assessment.Controllers
             context.SaveChanges();
             return View(dbBooking);
         }
+
+        [HttpGet]
+        public ActionResult Create(int id)
+        {
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
+            ViewData["NumberOfPersons"] = dbRoom.MaxPersons;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Models.Booking booking, int id = -1)
+        {
+            //return View();
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
+
+            booking.BookedRoom = dbRoom;
+            context.Booking.Add(booking);
+            context.SaveChanges();
+            Response.Redirect("~/Booking/");
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult StartBooking()
+        {
+            return View();
+        }
     }
 }
