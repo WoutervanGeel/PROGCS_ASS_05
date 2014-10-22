@@ -16,7 +16,6 @@ namespace Prog5Assessment.Controllers
             context = new DatabaseSetup();
         }
 
-        [HttpGet]
         public ActionResult Index(int id = -1)
         {
             var room = context.Room.SingleOrDefault(x => x.Id == id);
@@ -24,13 +23,35 @@ namespace Prog5Assessment.Controllers
             {
                 return HttpNotFound();
             }
-
+            ViewBag.RoomId = id;
             return View(context.CustomPrices.Where(c => c.Room_Id == id));
         }
 
-        [HttpGet]
-        public ActionResult Create()
+        public ActionResult Delete(int id = -1)
         {
+            var price = context.CustomPrices.SingleOrDefault(x => x.Id == id);
+
+            if (price == null)
+            {
+                return HttpNotFound();
+            }
+
+            int roomId = price.Room_Id;
+            context.CustomPrices.Remove(price);
+            context.SaveChanges();
+            Response.Redirect("~/CustomPrice/Index/" + roomId);
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult Create(int id = -1)
+        {
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
+            if (dbRoom == null)
+            {
+                return HttpNotFound();
+            }
+     
             return View();
         }
 
@@ -38,9 +59,15 @@ namespace Prog5Assessment.Controllers
         public ActionResult Create(Models.CustomPrices customPrice, int id = -1)
         {
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
+            if (dbRoom == null)
+            {
+                return HttpNotFound();
+            }
+
+            customPrice.Room_Id = id;
             context.CustomPrices.Add(customPrice);
             context.SaveChanges();
-            Response.Redirect("~/CustomPrices/"+id);
+            Response.Redirect("~/CustomPrice/Index/"+id);
             return null;
         }
     }

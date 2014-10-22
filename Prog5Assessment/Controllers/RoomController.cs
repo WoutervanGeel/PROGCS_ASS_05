@@ -23,7 +23,6 @@ namespace Prog5Assessment.Controllers
             return View(context.Room.ToList());
         }
 
-        [HttpGet]
         public ActionResult Delete(int id = -1)
         {
             var room = context.Room.SingleOrDefault(x => x.Id == id);
@@ -33,6 +32,14 @@ namespace Prog5Assessment.Controllers
                 return HttpNotFound();
             }
 
+            // delete custom prices
+            var prices = context.CustomPrices.Where(c => c.Room_Id == id).ToList();
+            foreach(var price in prices)
+            {
+                context.CustomPrices.Remove(price);
+            }
+
+            // delete room
             context.Room.Remove(room);
             context.SaveChanges();
             Response.Redirect("~/Room/");
