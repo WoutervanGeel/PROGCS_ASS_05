@@ -18,7 +18,6 @@ namespace Prog5Assessment.Controllers
 
         public ActionResult Index()
         {
-            var testing = context.Room.ToList();
             return View();
         }
     }
