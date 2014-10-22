@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Create";
-    this.Model.Guests = new Prog5Assessment.Models.Guest[5];
 }
 
 <h2>Create</h2>
@@ -54,9 +53,10 @@
             @Html.EditorFor(model => model.AccountNr)
             @Html.ValidationMessageFor(model => model.AccountNr)
         </div>
+        </fieldset>
+    <fieldset>
         @{
     int number = (int)ViewData["NumberOfPersons"];
-            //Model.Guests = new Prog5Assessment.Models.Guest[number];
             for (int i = 1; i <= number; i++)
             {
                 <legend> Guest @i </legend>

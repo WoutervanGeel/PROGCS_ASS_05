@@ -66,7 +66,7 @@ namespace Prog5Assessment.Controllers
             //return View();
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
 
-            var guest = booking.Guests[1];
+            var guest = booking.Guests[0];
 
             booking.BookedRoom = dbRoom;
             context.Booking.Add(booking);
@@ -74,9 +74,7 @@ namespace Prog5Assessment.Controllers
             Response.Redirect("~/Booking/");
             return null;
         }
-
-        [HttpGet]
-        public ActionResult StartBooking()
+        public ActionResult Index()
         {
             return View();
         }
