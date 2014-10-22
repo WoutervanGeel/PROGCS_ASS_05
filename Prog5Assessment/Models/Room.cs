@@ -8,12 +8,6 @@ namespace Prog5Assessment.Models
 {
     public class Room
     {
-        public static Room[] rooms;
-
-        public Room()
-        {
-            rooms = new Room[12];
-        }
         [Key]
         public int Id { get; set; }
 

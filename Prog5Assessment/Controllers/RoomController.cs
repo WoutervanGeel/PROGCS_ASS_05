@@ -10,15 +10,10 @@ namespace Prog5Assessment.Controllers
     public class RoomController : Controller
     {
         private DatabaseSetup context;
-        public static Room[] rooms;
-        public List<Guest> guests;
 
         public RoomController()
         {
             context = new DatabaseSetup();
-            rooms = new Room[12];
-            guests = new List<Guest>();
-
         }
 
         // Overview page: displays list of all rooms

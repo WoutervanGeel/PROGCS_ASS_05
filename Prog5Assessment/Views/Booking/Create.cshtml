@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
+    this.Model.Guests = new Prog5Assessment.Models.Guest[5];
 }
 
 <h2>Create</h2>
@@ -54,71 +55,73 @@
             @Html.ValidationMessageFor(model => model.AccountNr)
         </div>
         @{
-            for (int i = 1; i <= (int)ViewData["NumberOfPersons"]; i++)
+    int number = (int)ViewData["NumberOfPersons"];
+            //Model.Guests = new Prog5Assessment.Models.Guest[number];
+            for (int i = 1; i <= number; i++)
             {
                 <legend> Guest @i </legend>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].FirstName)
+                    @Html.LabelFor(model => model.Guests[i].FirstName)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].FirstName)
-                    @Html.ValidationMessageFor(model => model.guests[i].FirstName)
+                    @Html.EditorFor(model => model.Guests[i].FirstName)
+                    @Html.ValidationMessageFor(model => model.Guests[i].FirstName)
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].Infix)
+                    @Html.LabelFor(model => model.Guests[i].Infix)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].Infix)
-                    @Html.ValidationMessageFor(model => model.guests[i].Infix)
+                    @Html.EditorFor(model => model.Guests[i].Infix)
+                    @Html.ValidationMessageFor(model => model.Guests[i].Infix)
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].LastName)
+                    @Html.LabelFor(model => model.Guests[i].LastName)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].LastName)
-                    @Html.ValidationMessageFor(model => model.guests[i].LastName)
+                    @Html.EditorFor(model => model.Guests[i].LastName)
+                    @Html.ValidationMessageFor(model => model.Guests[i].LastName)
                 </div>
             
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].DateOfBirth)
+                    @Html.LabelFor(model => model.Guests[i].DateOfBirth)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].DateOfBirth)
-                    @Html.ValidationMessageFor(model => model.guests[i].DateOfBirth)
+                    @Html.EditorFor(model => model.Guests[i].DateOfBirth)
+                    @Html.ValidationMessageFor(model => model.Guests[i].DateOfBirth)
                 </div>
             
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].Address)
+                    @Html.LabelFor(model => model.Guests[i].Address)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].Address)
-                    @Html.ValidationMessageFor(model => model.guests[i].Address)
+                    @Html.EditorFor(model => model.Guests[i].Address)
+                    @Html.ValidationMessageFor(model => model.Guests[i].Address)
                 </div>
             
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].Postalcode)
+                    @Html.LabelFor(model => model.Guests[i].Postalcode)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].Postalcode)
-                    @Html.ValidationMessageFor(model => model.guests[i].Postalcode)
+                    @Html.EditorFor(model => model.Guests[i].Postalcode)
+                    @Html.ValidationMessageFor(model => model.Guests[i].Postalcode)
                 </div>
             
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].Location)
+                    @Html.LabelFor(model => model.Guests[i].Location)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].Location)
-                    @Html.ValidationMessageFor(model => model.guests[i].Location)
+                    @Html.EditorFor(model => model.Guests[i].Location)
+                    @Html.ValidationMessageFor(model => model.Guests[i].Location)
                 </div>
             
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.guests[i].Email)
+                    @Html.LabelFor(model => model.Guests[i].Email)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.guests[i].Email)
-                    @Html.ValidationMessageFor(model => model.guests[i].Email)
+                    @Html.EditorFor(model => model.Guests[i].Email)
+                    @Html.ValidationMessageFor(model => model.Guests[i].Email)
                 </div>
             }
         }

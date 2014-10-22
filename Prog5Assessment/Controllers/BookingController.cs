@@ -66,6 +66,8 @@ namespace Prog5Assessment.Controllers
             //return View();
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
 
+            var guest = booking.Guests[1];
+
             booking.BookedRoom = dbRoom;
             context.Booking.Add(booking);
             context.SaveChanges();
