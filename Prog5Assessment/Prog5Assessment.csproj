@@ -127,7 +127,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BookingController.cs" />
-    <Compile Include="Controllers\CustomPrice.cs" />
     <Compile Include="Controllers\CustomPriceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomController.cs" />

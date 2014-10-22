@@ -1,0 +1,48 @@
+﻿@model Prog5Assessment.Models.Booking
+
+@{
+    ViewBag.Title = "Step1";
+}
+
+<h2>Step1</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Booking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Guests)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Guests)
+            @Html.ValidationMessageFor(model => model.Guests)
+        </div>
+
+        <p>
+            <input type="submit" value="Step 2" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
