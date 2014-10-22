@@ -30,8 +30,9 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Custom prices", "Prices", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Custom prices", "Index", "CustomPrice", new { id = item.Id },null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Book", "Create", "Booking", new { id=item.Id}, null)
         </td>
     </tr>
 }

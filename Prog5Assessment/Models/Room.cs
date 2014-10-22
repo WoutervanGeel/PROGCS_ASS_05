@@ -11,8 +11,6 @@ namespace Prog5Assessment.Models
         [Key]
         public int Id { get; set; }
 
-        public List<CustomPrices> CustomPrices { get; set; }
-
         [Display(Name = "Maximal number of persons")]
         public int MaxPersons { get; set; }
 
