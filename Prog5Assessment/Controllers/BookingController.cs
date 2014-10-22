@@ -184,16 +184,22 @@ namespace Prog5Assessment.Controllers
         [HttpPost]
         public ActionResult Overview(Booking bookingFilter)
         {
-            // datum1 =  bookingFilter.StartDate;
-            // datum2 =  bookingFilter.StartDate;
-            ViewBag.OverviewTable = "RESULT KOMT HIER";
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Overview2()
-        {
-            context.Booking.
-            context.Room.ToList().Where()
+            DateTime startDate =  bookingFilter.StartDate;
+            DateTime endDate = bookingFilter.EndDate;
+
+            List<Booking> resultList = new List<Booking>();
+            string table = "<table>";
+            foreach (var item in context.Booking.ToList())
+            {
+                if (item.StartDate >= startDate && item.EndDate <= endDate)
+                {
+                    table += "<tr><td>" + item.StartDate + "</td><td>" + item.EndDate + "</td><td>" + item.Price;
+                    //resultList.Add(item);
+                }
+            }
+            table += "</table>";
+            ViewBag.OverviewTable = table;
+            //ViewBag.OverviewTable = resultList;
             return View();
         }
     }

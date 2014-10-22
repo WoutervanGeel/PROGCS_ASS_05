@@ -247,8 +247,8 @@
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Booking\Step2.cshtml" />
     <Content Include="Views\Booking\Overview.cshtml" />
-    <Content Include="Views\Booking\Overview2.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Overview2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
