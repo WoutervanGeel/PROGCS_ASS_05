@@ -45,7 +45,12 @@ namespace Prog5Assessment.Controllers
         [HttpPost]
         public ActionResult Step1(Booking bookingInfo)
         {
-            TempData["booking"] = bookingInfo;
+            // checks
+
+
+            Session["bookingStartDate"] = bookingInfo.StartDate;
+            Session["bookingStartDate"] = bookingInfo.EndDate;
+            Session["bookingGuestAmount"] = bookingInfo.Guests;
             Session["bookingStep"] = 2;
             Response.Redirect("~/Booking/Step2");
             return null;
@@ -55,6 +60,8 @@ namespace Prog5Assessment.Controllers
         public ActionResult Step2()
         {
             CheckStep(2);
+
+            // generate list
             List<SelectListItem> li = new List<SelectListItem>();
             if (context.Room.ToList().Count() == 0)
             {
@@ -78,18 +85,38 @@ namespace Prog5Assessment.Controllers
         {
             CheckStep(2);
             int roomId = 0;
+
+            // error checks
             try
             {
-                var test = collection.GetValue("RoomId").RawValue;
-                var njvfnhbfh = 83773;
-
+                roomId = (int)collection.GetValue("RoomId").RawValue;
             }
             catch (Exception ex)
             {
                 return View();
             }
 
-            TempData["booking"] = "";
+
+            // success
+            Session["bookingRoomId"] = roomId;
+            Response.Redirect("~/Booking/Step3");
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult Step3()
+        {
+            CheckStep(3);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Step3(FormCollection collection)
+        {
+            CheckStep(3);
+            
+            // success
+            Session["room"] = 0;
             Response.Redirect("~/Booking/Step3");
             return null;
         }

@@ -10,24 +10,21 @@ namespace Prog5Assessment.Models
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "First name: ")]
+
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
-        [Display(Name = "Infix: ")]
+
+        [Display(Name = "Infix")]
         public string Infix { get; set; }
-        [Display(Name = "Last name: ")]
+
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
-        [Display(Name = "Date of birth: ")]
+
+        [Display(Name = "Date of birth")]
         public DateTime DateOfBirth { get; set; }
-        [Display(Name = "Gender: ")]
-        public char Gender { get; set; }
-        [Display(Name = "Address: ")]
-        public string Address { get; set; }
-        [Display(Name = "Postalcode: ")]
-        public string Postalcode { get; set; }
-        [Display(Name = "Location: ")]
-        public string Location { get; set; }
-        [EmailAddress]
-        [Display(Name = "Email: ")]
-        public string Email { get; set; }
+
     }
 }
