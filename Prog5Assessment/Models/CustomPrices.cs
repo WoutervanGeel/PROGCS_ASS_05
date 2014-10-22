@@ -12,7 +12,7 @@ namespace Prog5Assessment.Models
         [Key]
         public int Id { get; set; }
 
-        public Room Room { get; set; }
+        public int Room_Id { get; set; }
 
         [Display(Name = "Start date")]
         public DateTime DateStart { get; set; }

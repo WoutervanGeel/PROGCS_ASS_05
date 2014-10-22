@@ -15,9 +15,17 @@ namespace Prog5Assessment.Controllers
         {
             context = new DatabaseSetup();
         }
-        public ActionResult Index()
+
+        [HttpGet]
+        public ActionResult Index(int id = -1)
         {
-            return View();
+            var room = context.Room.SingleOrDefault(x => x.Id == id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(context.CustomPrices.Where(c => c.Room_Id == id));
         }
 
         [HttpGet]
@@ -29,13 +37,10 @@ namespace Prog5Assessment.Controllers
         [HttpPost]
         public ActionResult Create(Models.CustomPrices customPrice, int id = -1)
         {
-            //return View();
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
-
-            customPrice.Room = dbRoom;
             context.CustomPrices.Add(customPrice);
             context.SaveChanges();
-            Response.Redirect("~/Room/");
+            Response.Redirect("~/CustomPrices/"+id);
             return null;
         }
     }

@@ -240,10 +240,10 @@
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Room\CustomPrice.cshtml" />
     <Content Include="Views\CustomPrice\Create.cshtml" />
     <Content Include="Views\CustomPrice\Index.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Room\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
