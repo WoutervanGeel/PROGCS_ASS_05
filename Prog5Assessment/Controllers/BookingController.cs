@@ -148,8 +148,25 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpGet]
-        public ActionResult StartBooking()
+        public ActionResult Overview1()
         {
+            Session["overviewStep"] = 1;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Overview1(Booking bookingFilter)
+        {
+            TempData["bookingOverview"] = bookingFilter;
+            Session["overviewStep"] = 2;
+            Response.Redirect("~/Booking/Overview2");
+            return null;
+        }
+        [HttpGet]
+        public ActionResult Overview2()
+        {
+            context.Booking.
+            context.Room.ToList().Where()
             return View();
         }
     }

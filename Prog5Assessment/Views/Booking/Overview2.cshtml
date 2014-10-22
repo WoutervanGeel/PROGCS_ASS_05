@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Prog5Assessment.Models.Booking>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Overview2";
 }
 
-<h2>Index</h2>
+<h2>Overview2</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Step1")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
@@ -60,6 +60,7 @@
     </tr>
 
 @foreach (var item in Model) {
+    if(item.StartDate >= )
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)
