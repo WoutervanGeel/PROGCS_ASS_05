@@ -142,6 +142,9 @@
       <DependentUpon>201410192055216_CustomPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Voucher.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\CustomPrices.cs" />
     <Compile Include="Models\DatabaseSetup.cs" />

@@ -68,14 +68,14 @@ namespace Prog5Assessment.Controllers
             }
 
             // limit persons
-            if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
-            {
-                // error
-                return View();
-            }
+            //if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
+            //{
+            //    // error
+            //    return View();
+            //}
 
-            dbRoom.MaxPersons = room.MaxPersons;
-            dbRoom.MinPrice = room.MinPrice;
+            //dbRoom.MaxPersons = room.MaxPersons;
+            //dbRoom.MinPrice = room.MinPrice;
             context.SaveChanges();
             Response.Redirect("~/Room/");
             return null;
@@ -91,11 +91,11 @@ namespace Prog5Assessment.Controllers
         public ActionResult Create(Models.Room room)
         {
             // limit persons
-            if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
-            {
-                // error
-                return View();
-            }
+            //if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
+            //{
+            //    // error
+            //    return View();
+            //}
 
             // max rooms check
             if(context.Room.Count() > 12)

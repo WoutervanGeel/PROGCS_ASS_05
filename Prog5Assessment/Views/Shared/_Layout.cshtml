@@ -10,7 +10,10 @@
 <body>
     @RenderBody()
 
-    @Html.ActionLink("Rooms editor", "Index", "Room")
+    @Html.ActionLink("Zalen overzicht", "Index", "Room")
+    @Html.ActionLink("Films overzicht", "Index", "Movie")
+    @Html.ActionLink("Coupon toevoegen", "Create", "Voucher")
+
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

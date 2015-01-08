@@ -217,7 +217,7 @@ namespace Prog5Assessment.Controllers
         public ActionResult Create(int id)
         {
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
-            ViewData["NumberOfPersons"] = dbRoom.MaxPersons;
+            //ViewData["NumberOfPersons"] = dbRoom.MaxPersons;
             return View();
         }
 

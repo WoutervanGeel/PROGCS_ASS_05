@@ -15,12 +15,8 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaxPersons)
+            @Html.DisplayNameFor(model => model.Seats)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinPrice)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -29,10 +25,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MaxPersons)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinPrice)
+            @Html.DisplayFor(modelItem => item.Seats)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

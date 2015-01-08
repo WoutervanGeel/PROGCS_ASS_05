@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Prog5Assessment.Models
 {
-    public class Room
+    public class Movie
     {
+
         [Key]
         public int Id { get; set; }
-
-        [Display(Name = "Name")]
+        public Room BookedRoom { get; set; }
         public string Name { get; set; }
-
-        [Display(Name = "Maximal number of seats")]
-        public int Seats { get; set; }
+        public DateTime Date { get; set; }
+        public int Price { get; set; }
+        public int Duration { get; set; }
     }
 }
