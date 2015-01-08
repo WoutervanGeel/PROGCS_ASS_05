@@ -24,21 +24,12 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.MaxPersons)
+            @Html.LabelFor(model => model.Seats)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.MaxPersons)
-            @Html.ValidationMessageFor(model => model.MaxPersons)
+            @Html.EditorFor(model => model.Seats)
+            @Html.ValidationMessageFor(model => model.Seats)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.MinPrice)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.MinPrice)
-            @Html.ValidationMessageFor(model => model.MinPrice)
-        </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>

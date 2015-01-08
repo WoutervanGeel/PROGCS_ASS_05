@@ -7,11 +7,11 @@ using System.Web.Mvc;
 
 namespace Prog5Assessment.Controllers
 {
-    public class RoomController : Controller
+    public class VoucherController : Controller
     {
         private DatabaseSetup context;
 
-        public RoomController()
+        public VoucherController()
         {
             context = new DatabaseSetup();
         }
@@ -74,8 +74,8 @@ namespace Prog5Assessment.Controllers
             //    return View();
             //}
 
-            dbRoom.Seats = room.Seats;
-            dbRoom.Name = room.Name;
+            //dbRoom.MaxPersons = room.MaxPersons;
+            //dbRoom.MinPrice = room.MinPrice;
             context.SaveChanges();
             Response.Redirect("~/Room/");
             return null;
@@ -98,7 +98,7 @@ namespace Prog5Assessment.Controllers
             //}
 
             // max rooms check
-            if(context.Room.Count() >= 4)
+            if(context.Room.Count() > 12)
             {
                 // error
                 return View();
