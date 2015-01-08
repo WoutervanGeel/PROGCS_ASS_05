@@ -243,13 +243,6 @@ namespace Prog5Assessment.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Overview()
-        {
-            ViewBag.OverviewTable = "";
-            return View();
-        }
-
         [HttpPost]
         public ActionResult Overview(Booking bookingFilter)
         {
