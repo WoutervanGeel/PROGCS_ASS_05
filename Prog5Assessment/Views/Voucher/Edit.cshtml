@@ -1,17 +1,27 @@
-﻿@model Prog5Assessment.Models.CustomPrices
+﻿@model Prog5Assessment.Models.Voucher
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>CustomPrices</legend>
+        <legend>Voucher</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Code)
+            @Html.ValidationMessageFor(model => model.Code)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.DateStart)
@@ -30,15 +40,15 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
+            @Html.LabelFor(model => model.Discount)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
+            @Html.EditorFor(model => model.Discount)
+            @Html.ValidationMessageFor(model => model.Discount)
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }

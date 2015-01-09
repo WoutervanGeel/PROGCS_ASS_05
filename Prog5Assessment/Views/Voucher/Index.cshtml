@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Prog5Assessment.Models.CustomPrices>
+﻿@model IEnumerable<Prog5Assessment.Models.Voucher>
 
 @{
     ViewBag.Title = "Index";
@@ -7,10 +7,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = ViewBag.RoomId })
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.DateStart)
         </th>
@@ -18,7 +21,7 @@
             @Html.DisplayNameFor(model => model.DateEnd)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Discount)
         </th>
         <th></th>
     </tr>
@@ -26,15 +29,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.DateStart)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateEnd)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.Discount)
         </td>
         <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

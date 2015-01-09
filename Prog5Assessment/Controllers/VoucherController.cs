@@ -42,20 +42,20 @@ namespace Prog5Assessment.Controllers
         [HttpGet]
         public ActionResult Edit(int id = -1)
         {
-            var room = context.Room.SingleOrDefault(x => x.Id == id);
+            var voucher = context.Voucher.SingleOrDefault(x => x.Id == id);
 
-            if(room == null)
+            if(voucher == null)
             {
                 return HttpNotFound();
             }
-            return View(room);
+            return View(voucher);
         }
 
         [HttpPost]
-        public ActionResult Edit(Room room, int id = -1)
+        public ActionResult Edit(Voucher voucher, int id = -1)
         {
-            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
-            if (dbRoom == null)
+            var dbVoucher = context.Voucher.SingleOrDefault(x => x.Id == id);
+            if (dbVoucher == null)
             {
                 return HttpNotFound();
             }
@@ -67,10 +67,12 @@ namespace Prog5Assessment.Controllers
             //    return View();
             //}
 
-            //dbRoom.MaxPersons = room.MaxPersons;
-            //dbRoom.MinPrice = room.MinPrice;
+            dbVoucher.Code = voucher.Code;
+            dbVoucher.DateEnd = voucher.DateEnd;
+            dbVoucher.DateStart = voucher.DateStart;
+            dbVoucher.Discount = voucher.Discount;
             context.SaveChanges();
-            Response.Redirect("~/Room/");
+            Response.Redirect("~/Voucher/");
             return null;
         }
 
@@ -81,7 +83,7 @@ namespace Prog5Assessment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Models.Room room)
+        public ActionResult Create(Models.Voucher voucher)
         {
             // limit persons
             //if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
@@ -90,17 +92,10 @@ namespace Prog5Assessment.Controllers
             //    return View();
             //}
 
-            // max rooms check
-            if(context.Room.Count() > 12)
-            {
-                // error
-                return View();
-            }
-
             // no errors
-            context.Room.Add(room);
+            context.Voucher.Add(voucher);
             context.SaveChanges();
-            Response.Redirect("~/Room/");
+            Response.Redirect("~/Voucher/");
             return null;
         }
 
