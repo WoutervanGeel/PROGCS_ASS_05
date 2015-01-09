@@ -32,11 +32,11 @@ namespace Prog5Assessment.Controllers
                 return HttpNotFound();
             }
 
-            // delete custom prices
-            var prices = context.CustomPrices.Where(c => c.Room_Id == id).ToList();
-            foreach(var price in prices)
+             //verwijderen van referenties
+            var movies = context.Movie.Where(c => c.Id == id).ToList();
+            foreach (var movie in movies)
             {
-                context.CustomPrices.Remove(price);
+                context.Movie.Remove(movie);
             }
 
             // delete room

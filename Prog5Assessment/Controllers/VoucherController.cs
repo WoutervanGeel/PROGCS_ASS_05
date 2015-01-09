@@ -20,29 +20,22 @@ namespace Prog5Assessment.Controllers
         public ActionResult Index()
         {
 
-            return View(context.Room.ToList());
+            return View(context.Voucher.ToList());
         }
 
         public ActionResult Delete(int id = -1)
         {
-            var room = context.Room.SingleOrDefault(x => x.Id == id);
+            var voucher = context.Voucher.SingleOrDefault(x => x.Id == id);
 
-            if (room == null)
+            if (voucher == null)
             {
                 return HttpNotFound();
             }
 
-            // delete custom prices
-            //var prices = context.CustomPrices.Where(c => c.Room_Id == id).ToList();
-            //foreach(var price in prices)
-            //{
-            //    context.CustomPrices.Remove(price);
-            //}
-
-            // delete room
-            context.Room.Remove(room);
+            // delete voucher
+            context.Voucher.Remove(voucher);
             context.SaveChanges();
-            Response.Redirect("~/Room/");
+            Response.Redirect("~/Voucher/");
             return null;
         }
 

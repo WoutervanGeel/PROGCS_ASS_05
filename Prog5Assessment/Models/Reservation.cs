@@ -18,6 +18,6 @@ namespace Prog5Assessment.Models
         public string InvoiceCity { get; set; }
         public string InvoicePostal { get; set; }
         public int BankAccount { get; set; }
-        public Voucher SelectedVoucher { set; get; }
+        public int Discount { set; get; }
     }
 }
