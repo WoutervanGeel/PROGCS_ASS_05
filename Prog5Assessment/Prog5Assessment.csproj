@@ -253,6 +253,7 @@
     <Content Include="Views\Booking\Overview.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Overview2.cshtml" />
+    <Content Include="Views\Voucher\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

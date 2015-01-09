@@ -33,11 +33,11 @@ namespace Prog5Assessment.Controllers
             }
 
             // delete custom prices
-            var prices = context.CustomPrices.Where(c => c.Room_Id == id).ToList();
-            foreach(var price in prices)
-            {
-                context.CustomPrices.Remove(price);
-            }
+            //var prices = context.CustomPrices.Where(c => c.Room_Id == id).ToList();
+            //foreach(var price in prices)
+            //{
+            //    context.CustomPrices.Remove(price);
+            //}
 
             // delete room
             context.Room.Remove(room);
