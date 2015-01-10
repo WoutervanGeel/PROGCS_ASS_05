@@ -1,4 +1,4 @@
-﻿@model Prog5Assessment.Models.Booking
+﻿﻿@model Prog5Assessment.Models.Reservation
 
 @{
     ViewBag.Title = "Step2";
@@ -6,18 +6,19 @@
 
 <h2>Step2</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Booking</legend>
+        <legend>Reservation</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(m => m.BookedRoom)
+            @Html.LabelFor(m => m.PlayedMovie)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("RoomId", ViewData["rooms"] as List<SelectListItem>)
+            @Html.DropDownList("MovieId", ViewData["movies"] as List<SelectListItem>)
         </div>
 
         <p>

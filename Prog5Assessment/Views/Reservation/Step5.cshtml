@@ -1,0 +1,36 @@
+﻿﻿@model Prog5Assessment.Models.Reservation
+
+@{
+    ViewBag.Title = "Step5";
+}
+
+<h2>Step5</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Reservation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceTotal)
+        </div>
+        <div>
+            @{
+                int TotalPrice = (int)ViewData["TotalPrice"];
+                @TotalPrice
+            }
+        </div>
+
+
+        <p>
+            <input type="submit" value="Bevestigen" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

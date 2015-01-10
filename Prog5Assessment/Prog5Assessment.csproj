@@ -127,7 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,22 +240,17 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Room\IndexOld.cshtml" />
-    <Content Include="Views\Booking\Edit.cshtml" />
-    <Content Include="Views\CustomPrice\Create.cshtml" />
-    <Content Include="Views\CustomPrice\Index.cshtml" />
-    <Content Include="Views\Booking\Create.cshtml" />
-    <Content Include="Views\Booking\Step1.cshtml" />
     <Content Include="Views\Room\Edit.cshtml" />
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
-    <Content Include="Views\Booking\Step2.cshtml" />
-    <Content Include="Views\Booking\Overview.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Booking\Overview2.cshtml" />
     <Content Include="Views\Voucher\Create.cshtml" />
-    <Content Include="Views\Movie\Index.cshtml" />
-    <Content Include="Views\Movie\Create.cshtml" />
-    <Content Include="Views\Movie\Create2.cshtml" />
+    <Content Include="Views\Voucher\Edit.cshtml" />
+    <Content Include="Views\Voucher\Index.cshtml" />
+    <Content Include="Views\Reservation\Step1.cshtml" />
+    <Content Include="Views\Reservation\Step2.cshtml" />
+    <Content Include="Views\Reservation\Step3.cshtml" />
+    <Content Include="Views\Reservation\Step4.cshtml" />
+    <Content Include="Views\Reservation\Step5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
