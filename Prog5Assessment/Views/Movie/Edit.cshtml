@@ -56,7 +56,10 @@
                     formatTime: 'H:i',
                     formatDate: 'Y-m-d',
                     step: 5,
-                    inline: true
+                    inline: true,
+                    onChangeDateTime: function (dp, $input) {
+                        $(".datepicker").val($input.val());
+                    }
                 });
             });
             function dateConvert(value)
@@ -64,6 +67,11 @@
                 var datetime = value.split(' ');
                 var datevalues = datetime[0].split('-');
                 var timevalues = datetime[1].split(':');
+
+                if (datevalues[0].length > 2)
+                {
+                    return value;
+                }
                 var date = new Date(datevalues[2], datevalues[1], datevalues[0]);
 
                 var year = date.getFullYear();

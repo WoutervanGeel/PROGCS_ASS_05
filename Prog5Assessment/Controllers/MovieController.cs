@@ -100,7 +100,7 @@ namespace Prog5Assessment.Controllers
                 }
             }
 
-            ViewBag.roomId = dbMovie.RoomId;
+            ViewBag.roomId = roomId;
             ViewBag.rooms = context.Room.ToList();
             return View();
         }
