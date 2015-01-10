@@ -14,11 +14,12 @@ namespace Prog5Assessment.Models
         public Reservation MadeReservation { get; set; }
 
         [Display(Name = "First name")]
+        [Required]
         public string FirstName { get; set; }
 
         [Display(Name = "Insertion")]
         public string Insertion { get; set; }
-
+        [Required]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
     }

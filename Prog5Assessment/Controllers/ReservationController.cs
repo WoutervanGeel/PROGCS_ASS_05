@@ -35,9 +35,26 @@ namespace Prog5Assessment.Controllers
 
         }
 
+        private int GetAvailableSeats(Movie currentMovie)
+        {
+            List<Reservation> reservationList = context.Reservation.Where(c => c.PlayedMovie.Id == currentMovie.Id).ToList();
+            int seatsTaken = 0;
+            int availableSeats;
+            foreach (Reservation reservation in reservationList)
+            {
+                seatsTaken += reservation.Guests;
+            }
+
+            //availableSeats = currentMovie.BookedRoom.Seats;
+            availableSeats = 5;
+            availableSeats -= seatsTaken;
+            return availableSeats;
+        }
+
         [HttpGet]
         public ActionResult Step1()
         {
+            ViewData["ErrorMessage"] = "";
             Session["reservationStep"] = 1;
             return View();
         }
@@ -46,8 +63,15 @@ namespace Prog5Assessment.Controllers
         public ActionResult Step1(Reservation reservationInfo)
         {
             // checks
+            if(reservationInfo.Guests <= 0)
+            {
+                ViewData["ErrorMessage"] = "Een reservering moet voor minimaal 1 persoon gemaakt worden.";
+                return View();
+            }
+
             Session["numberOfGuests"] = reservationInfo.Guests;
             Session["reservation"] = reservationInfo;
+            ViewData["ErrorMessage"] = "";
             Session["reservationStep"] = 2;
             Response.Redirect("~/Reservation/Step2");
             return null;
@@ -69,7 +93,11 @@ namespace Prog5Assessment.Controllers
                 li.Add(new SelectListItem { Text = "Select ...", Value = "-1" });
                 foreach (var movie in context.Movie.ToList())
                 {
-                    li.Add(new SelectListItem { Text = movie.Name, Value = "" + movie.Id });
+                    if (GetAvailableSeats(movie) >= (int)Session["numberOfGuests"])
+                    {
+                        li.Add(new SelectListItem { Text = movie.Name, Value = "" + movie.Id });
+                    }
+                    
                 }
             }
             ViewData["movies"] = li;
@@ -81,7 +109,10 @@ namespace Prog5Assessment.Controllers
         public ActionResult Step2(Reservation reservationInfo)
         {
             CheckStep(2);
+
             // checks
+
+
             Session["reservationMovieId"] = Request.Form["MovieId"];
             Session["reservationStep"] = 3;
             Response.Redirect("~/Reservation/Step3");
@@ -123,12 +154,18 @@ namespace Prog5Assessment.Controllers
         [HttpPost]
         public ActionResult Step4(Reservation reservationInfo)
         {
+            
             CheckStep(4);
             List<Voucher> tempVoucherList = context.Voucher.Where(c => c.Code == reservationInfo.SelectedVoucher.Code).ToList();
-            if (tempVoucherList == null || tempVoucherList.Count == 0)
-            {
-                return View();
-            }
+                if (tempVoucherList == null || tempVoucherList.Count == 0)
+                {
+                    if (!((string)reservationInfo.SelectedVoucher.Code == null))
+                    {
+                        ViewData["ErrorMessage"] = "Deze voucher code is niet geldig.";
+                        return View();
+                    }
+                }
+
 
             Session["reservationBankAccount"] = reservationInfo.BankAccount;
             Session["reservationInvoiceAddress"] = reservationInfo.InvoiceAddress;

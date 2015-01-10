@@ -93,7 +93,7 @@ namespace Prog5Assessment.Controllers
         {
             // todo: check of zaal beschikbaar is
             string roomId = Request.Form["roomsdropdown"];
-            var dbRoom = context.Room.SingleOrDefault(x => x.Id == Int32.Parse(roomId));
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == Convert.ToInt32(roomId));
             if (dbRoom == null)
             {
                 ModelState.AddModelError("Room", "Room does not exist!");
