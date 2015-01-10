@@ -22,6 +22,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.RoomId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("roomsdropdown", new SelectList(ViewBag.rooms, "Id", "Name", ViewBag.roomId))
+            @Html.ValidationMessageFor(model => model.RoomId)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Price)
         </div>
         <div class="editor-field">
@@ -46,7 +54,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Edit" />
         </p>
     </fieldset>
 }

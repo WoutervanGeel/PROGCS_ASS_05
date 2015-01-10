@@ -19,7 +19,7 @@ namespace Prog5Assessment.Controllers
         // Overview page: displays list of all rooms
         public ActionResult Index()
         {
-
+            ViewBag.rooms = context.Room.ToList();
             return View(context.Movie.ToList());
         }
 
@@ -47,6 +47,7 @@ namespace Prog5Assessment.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.roomId = dbMovie.RoomId;
             ViewBag.rooms = context.Room.ToList();
             return View(dbMovie);
         }
@@ -65,14 +66,14 @@ namespace Prog5Assessment.Controllers
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == roomId);
             if (dbRoom == null)
             {
-                ModelState.AddModelError("Room", "Room does not exist!");
+                ModelState.AddModelError("RoomId", "Room does not exist!");
             }
             else
             {
-                var movieList = context.Movie.Where(c => (movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))).ToList();
+                var movieList = context.Movie.Where(c => ((movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))) && c.Id != dbMovie.Id && c.RoomId == roomId).ToList();
                 if (movieList.Count() > 0)
                 {
-                    ModelState.AddModelError("Room", "Room already taken!");
+                    ModelState.AddModelError("RoomId", "Room already taken!");
                 }
                 else
                 {
@@ -88,6 +89,7 @@ namespace Prog5Assessment.Controllers
                 }
             }
 
+            ViewBag.roomId = dbMovie.RoomId;
             ViewBag.rooms = context.Room.ToList();
             return View();
         }
@@ -107,14 +109,14 @@ namespace Prog5Assessment.Controllers
             var dbRoom = context.Room.SingleOrDefault(x => x.Id == roomId);
             if (dbRoom == null)
             {
-                ModelState.AddModelError("Room", "Room does not exist!");
+                ModelState.AddModelError("RoomId", "Room does not exist!");
             }
             else
             {
-                var movieList = context.Movie.Where(c => (movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))).ToList();
+                var movieList = context.Movie.Where(c => ((movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))) && c.RoomId == roomId).ToList();
                 if (movieList.Count() > 0)
                 {
-                    ModelState.AddModelError("Room", "Room already taken!");
+                    ModelState.AddModelError("RoomId", "Room already taken!");
                 }
                 else
                 {
@@ -130,6 +132,11 @@ namespace Prog5Assessment.Controllers
             ViewBag.rooms = context.Room.ToList();
             return View();
 
+        }
+
+        public string getRoomName()
+        {
+            return "test";
         }
 
     }
