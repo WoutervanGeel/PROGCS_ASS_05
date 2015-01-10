@@ -1,0 +1,63 @@
+﻿@model Prog5Assessment.Models.Guest
+
+@{
+    ViewBag.Title = "Step3";
+}
+
+<h2>Step3</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Guest information</legend>
+
+        @{
+    int number = (int)ViewData["NumberOfPersons"];
+    for (var i = 1; i <= number; i++)
+    {
+        @:
+            <h2>Guest @i</h2>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FirstName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("FirstName")
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Insertion)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("Infix")
+                @Html.ValidationMessageFor(model => model.Insertion)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("LastName")
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+    }
+        }
+        <p>
+            <input type="submit" value="Step 4" />
+        </p>
+
+    </fieldset>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

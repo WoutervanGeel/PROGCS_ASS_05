@@ -127,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
@@ -245,6 +246,11 @@
     <Content Include="Views\Voucher\Create.cshtml" />
     <Content Include="Views\Voucher\Edit.cshtml" />
     <Content Include="Views\Voucher\Index.cshtml" />
+    <Content Include="Views\Reservation\Step1.cshtml" />
+    <Content Include="Views\Reservation\Step2.cshtml" />
+    <Content Include="Views\Reservation\Step3.cshtml" />
+    <Content Include="Views\Reservation\Step4.cshtml" />
+    <Content Include="Views\Reservation\Step5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
