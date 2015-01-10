@@ -39,6 +39,17 @@ namespace Prog5Assessment.Controllers
             return null;
         }
 
+        public ActionResult Guestlist(int id = -1)
+        {
+            var dbMovie = context.Movie.SingleOrDefault(x => x.Id == id);
+            if (dbMovie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(context.Guest.Where(c => c.MadeReservation.PlayedMovie.Id == id).OrderBy(c => c.LastName).ToList());
+        }
+
         [HttpGet]
         public ActionResult Edit(int id = -1)
         {

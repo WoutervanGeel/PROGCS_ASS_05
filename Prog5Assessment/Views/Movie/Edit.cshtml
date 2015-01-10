@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -41,10 +42,44 @@
             @Html.LabelFor(model => model.Date)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Date)
+            @Html.TextBoxFor(model => model.Date, new { @class = "datepicker" })
             @Html.ValidationMessageFor(model => model.Date)
         </div>
+        <script>
+            $(function () {
+                
+                var correctDate = dateConvert($(".datepicker").val());
+                //$(".datepicker").val(correctDate);
+             
+                $(".datepicker").datetimepicker({
+                    value:correctDate,
+                    formatTime: 'H:i',
+                    formatDate: 'Y-m-d',
+                    step: 5,
+                    inline: true
+                });
+            });
+            function dateConvert(value)
+            {
+                var datetime = value.split(' ');
+                var datevalues = datetime[0].split('-');
+                var timevalues = datetime[1].split(':');
+                var date = new Date(datevalues[2], datevalues[1], datevalues[0]);
 
+                var year = date.getFullYear();
+
+                var month = date.getMonth();
+                if (month <= 9)
+                    month = '0' + month;
+
+                var day = date.getDate();
+                if (day <= 9)
+                    day = '0' + day;
+
+                var prettyDate = year + '/' + month + '/' + day + " " + timevalues[0] + ":" + timevalues[1];
+                return prettyDate;
+            }
+        </script>
         <div class="editor-label">
             @Html.LabelFor(model => model.Duration)
         </div>

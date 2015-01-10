@@ -44,6 +44,16 @@
             @Html.EditorFor(model => model.Date)
             @Html.ValidationMessageFor(model => model.Date)
         </div>
+        <script>
+            $(function () {
+                $("input[type='datetime']").datetimepicker({
+                    formatTime: 'H:i',
+                    formatDate: 'Y-m-d',
+                    step: 5,
+                    inline: true
+                });
+            });
+        </script>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Duration)
