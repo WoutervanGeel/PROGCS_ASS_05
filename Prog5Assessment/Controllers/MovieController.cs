@@ -25,60 +25,71 @@ namespace Prog5Assessment.Controllers
 
         public ActionResult Delete(int id = -1)
         {
-            var room = context.Room.SingleOrDefault(x => x.Id == id);
+            var movie = context.Movie.SingleOrDefault(x => x.Id == id);
 
-            if (room == null)
+            if (movie == null)
             {
                 return HttpNotFound();
             }
 
-            //verwijderen van referenties
-            var movies = context.Movie.Where(c => c.Id == id).ToList();
-            foreach (var movie in movies)
-            {
-                context.Movie.Remove(movie);
-            }
-
             // delete room
-            context.Room.Remove(room);
+            context.Movie.Remove(movie);
             context.SaveChanges();
-            Response.Redirect("~/Room/");
+            Response.Redirect("~/Movie/");
             return null;
         }
 
         [HttpGet]
         public ActionResult Edit(int id = -1)
         {
-            var room = context.Room.SingleOrDefault(x => x.Id == id);
-
-            if (room == null)
+            var dbMovie = context.Movie.SingleOrDefault(x => x.Id == id);
+            if (dbMovie == null)
             {
                 return HttpNotFound();
             }
-            return View(room);
+            ViewBag.rooms = context.Room.ToList();
+            return View(dbMovie);
         }
 
         [HttpPost]
-        public ActionResult Edit(Room room, int id = -1)
+        public ActionResult Edit(Movie movie, int id = -1)
         {
-            var dbRoom = context.Room.SingleOrDefault(x => x.Id == id);
-            if (dbRoom == null)
+            var dbMovie = context.Movie.SingleOrDefault(x => x.Id == id);
+            if (dbMovie == null)
             {
                 return HttpNotFound();
             }
 
-            // limit persons
-            //if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
-            //{
-            //    // error
-            //    return View();
-            //}
+            // todo: check of zaal beschikbaar is
+            int roomId = Convert.ToInt32(Request.Form["roomsdropdown"]);
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == roomId);
+            if (dbRoom == null)
+            {
+                ModelState.AddModelError("Room", "Room does not exist!");
+            }
+            else
+            {
+                var movieList = context.Movie.Where(c => (movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))).ToList();
+                if (movieList.Count() > 0)
+                {
+                    ModelState.AddModelError("Room", "Room already taken!");
+                }
+                else
+                {
+                    // no errors
+                    dbMovie.RoomId = roomId;
+                    dbMovie.Name = movie.Name;
+                    dbMovie.Price = movie.Price;
+                    dbMovie.Duration = movie.Duration;
+                    dbMovie.Date = movie.Date;
+                    context.SaveChanges();
+                    Response.Redirect("~/Movie/");
+                    return null;
+                }
+            }
 
-            dbRoom.Seats = room.Seats;
-            dbRoom.Name = room.Name;
-            context.SaveChanges();
-            Response.Redirect("~/Room/");
-            return null;
+            ViewBag.rooms = context.Room.ToList();
+            return View();
         }
 
         [HttpGet]
@@ -108,7 +119,7 @@ namespace Prog5Assessment.Controllers
                 else
                 {
                     // no errors
-                    movie.Room = dbRoom;
+                    movie.RoomId = roomId;
                     context.Movie.Add(movie);
                     context.SaveChanges();
                     Response.Redirect("~/Movie/");

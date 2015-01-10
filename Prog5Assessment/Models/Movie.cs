@@ -11,7 +11,8 @@ namespace Prog5Assessment.Models
     {
         [Key]
         public int Id { get; set; }
-        public Room Room { get; set; }
+        public int RoomId { get; set; }
+
         [Required]
         public string Name { get; set; }
         public int Price { get; set; }
