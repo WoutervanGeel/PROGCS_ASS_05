@@ -11,14 +11,15 @@ namespace Prog5Assessment.Models
         [Key]
         public int Id { get; set; }
 
-        public Reservation MadeReservation { get; set; }
+        public int ReservationId { get; set; }
 
         [Display(Name = "First name")]
+        [Required]
         public string FirstName { get; set; }
 
         [Display(Name = "Insertion")]
         public string Insertion { get; set; }
-
+        [Required]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
     }

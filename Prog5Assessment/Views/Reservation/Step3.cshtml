@@ -5,6 +5,7 @@
 }
 
 <h2>Step3</h2>
+<p style="color: red">@ViewData["ErrorMessage"]</p>
 
 @using (Html.BeginForm())
 {
@@ -25,7 +26,7 @@
                 @Html.LabelFor(model => model.FirstName)
             </div>
             <div class="editor-field">
-                @Html.TextBox("FirstName")
+                @Html.TextBox("FirstName[]")
                 @Html.ValidationMessageFor(model => model.FirstName)
             </div>
 
@@ -33,7 +34,7 @@
                 @Html.LabelFor(model => model.Insertion)
             </div>
             <div class="editor-field">
-                @Html.TextBox("Infix")
+                @Html.TextBox("Insertion[]")
                 @Html.ValidationMessageFor(model => model.Insertion)
             </div>
 
@@ -41,7 +42,7 @@
                 @Html.LabelFor(model => model.LastName)
             </div>
             <div class="editor-field">
-                @Html.TextBox("LastName")
+                @Html.TextBox("LastName[]")
                 @Html.ValidationMessageFor(model => model.LastName)
             </div>
     }
