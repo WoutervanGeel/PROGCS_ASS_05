@@ -47,7 +47,8 @@ namespace Prog5Assessment.Controllers
                 return HttpNotFound();
             }
 
-            return View(context.Guest.Where(c => c.MadeReservation.PlayedMovie.Id == id).OrderBy(c => c.LastName).ToList());
+            List<int> reservationIds = context.Reservation.Where(c => c.MovieId == id).Select(c => c.Id).ToList();
+            return View(context.Guest.Where(c => reservationIds.Contains(c.ReservationId)).OrderBy(c => c.LastName).ToList());
         }
 
         [HttpGet]
