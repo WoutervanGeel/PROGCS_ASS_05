@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquerydatetime")
+    @Scripts.Render("~/bundles/jqueryui")
 </head>
 <body>
     @RenderBody()
@@ -15,8 +20,6 @@
     @Html.ActionLink("Coupon toevoegen", "Index", "Voucher")
     @Html.ActionLink("Reservation toevoegen", "Step1", "Reservation")
 
-
-    @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>
 </html>
