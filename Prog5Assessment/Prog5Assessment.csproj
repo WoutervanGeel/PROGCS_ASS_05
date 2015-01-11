@@ -153,6 +153,7 @@
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jquery.datetimepicker.css" />
@@ -256,7 +257,6 @@
     <Content Include="Views\Reservation\Step4.cshtml" />
     <Content Include="Views\Reservation\Step5.cshtml" />
     <Content Include="Views\Movie\Create.cshtml" />
-    <Content Include="Views\Movie\Create2.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Edit.cshtml" />
     <Content Include="Views\Movie\Guestlist.cshtml" />
