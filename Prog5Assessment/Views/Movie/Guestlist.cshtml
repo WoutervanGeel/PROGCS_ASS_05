@@ -31,6 +31,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Guest", new { id = item.Id }, null)
+        </td>
     </tr>
 }
 
