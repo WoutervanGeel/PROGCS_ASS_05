@@ -1,12 +1,17 @@
 ﻿$(function () {
     
-    $("div").tooltip({
-        show: {
-            effect: "slideDown",
-            delay: 250
-        }
+    var availableTags = [
+      "van",
+      "de",
+      "van de",
+      "van der",
+      "te",
+      "den"
+    ];
+    $(".autocompleet").autocomplete({
+        source: availableTags
     });
-    
+
     $(".datepicker").each(function () {
 
         var dateinput = $(this).val();

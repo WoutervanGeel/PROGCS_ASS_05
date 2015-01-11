@@ -34,7 +34,7 @@
                 @Html.LabelFor(model => model.Insertion)
             </div>
             <div class="editor-field">
-                @Html.TextBox("Insertion[]")
+                @Html.TextBox("Insertion[]", "", new { @class = "autocompleet" })
                 @Html.ValidationMessageFor(model => model.Insertion)
             </div>
 
@@ -54,10 +54,6 @@
     </fieldset>
 
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
