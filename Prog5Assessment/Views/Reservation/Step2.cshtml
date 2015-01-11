@@ -5,6 +5,7 @@
 }
 
 <h2>Step2</h2>
+<p style="color: red">@ViewData["ErrorMessage"]</p>
 
 @using (Html.BeginForm())
 {
@@ -13,17 +14,29 @@
 
     <fieldset>
         <legend>Reservation</legend>
+        @if (!(Boolean)ViewData["moviesAvailable"])
+        {
+            //geen films beschikbaar
+            <p>geen movies beschikbaar</p>
+    <p>
+        @Html.ActionLink("Actie afbreken", "Index", "Home")
+    </p>
+        }
+        else
+        {
+            //films beschikbaar
+            <div class="editor-label">
+                Selecteer een film
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("MovieId", ViewData["movies"] as List<SelectListItem>)
+            </div>
 
-        <div class="editor-label">
-            Selecteer een film
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("MovieId", ViewData["movies"] as List<SelectListItem>)
-        </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        }
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }
 

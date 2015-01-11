@@ -58,9 +58,8 @@ namespace Prog5Assessment.Controllers
             }
 
             //availableSeats = currentMovie.Room.Seats;
-            //Movie tempMovie = context.Movie.Where(c => c.Id == currentMovie.Id).ToList()[0];
-            //availableSeats = tempMovie.Room.Seats;
-            availableSeats = 5;
+            Room tempRoom = context.Room.Where(c => c.Id == currentMovie.RoomId).ToList()[0];
+            availableSeats = tempRoom.Seats;
             availableSeats -= seatsTaken;
             return availableSeats;
         }
@@ -105,12 +104,16 @@ namespace Prog5Assessment.Controllers
         public ActionResult Step2()
         {
             CheckStep(2);
+            ViewData["moviesAvailable"] = true;
+            Session["moviesAvailable"] = true;
 
             // generate list
             List<SelectListItem> li = new List<SelectListItem>();
             if (context.Movie.ToList().Count() == 0)
             {
                 li.Add(new SelectListItem { Text = "No Movies available", Value = "-1" });
+                ViewData["moviesAvailable"] = false;
+                Session["moviesAvailable"] = false;
             }
             else
             {
@@ -121,10 +124,15 @@ namespace Prog5Assessment.Controllers
                     {
                         li.Add(new SelectListItem { Text = movie.Name + " at " +movie.Date, Value = "" + movie.Id });
                     }
-                    
+                }
+                if (li.Count() == 1)
+                {
+                    ViewData["moviesAvailable"] = false;
+                    Session["moviesAvailable"] = false;
                 }
             }
             ViewData["movies"] = li;
+            Session["movies"] = li;
 
             return View();
         }
@@ -137,6 +145,14 @@ namespace Prog5Assessment.Controllers
             // checks
 
             string s = Request.Form["MovieId"];
+            if (Convert.ToInt32(s) == -1)
+            {
+                ViewData["ErrorMessage"] = "Selecteer een film";
+                ViewData["moviesAvailable"] = Session["moviesAvailable"];
+                ViewData["movies"] = Session["movies"];
+                return View();
+            }
+
             Session["reservationMovieId"] = Request.Form["MovieId"];
             Session["reservationStep"] = 3;
             Response.Redirect("~/Reservation/Step3");
