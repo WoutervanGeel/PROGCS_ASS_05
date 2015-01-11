@@ -61,13 +61,6 @@ namespace Prog5Assessment.Controllers
                 return HttpNotFound();
             }
 
-            // limit persons
-            //if (room.MaxPersons != 2 && room.MaxPersons != 3 && room.MaxPersons != 5)
-            //{
-            //    // error
-            //    return View();
-            //}
-
             dbVoucher.Code = voucher.Code;
             dbVoucher.DateEnd = voucher.DateEnd;
             dbVoucher.DateStart = voucher.DateStart;

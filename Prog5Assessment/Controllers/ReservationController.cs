@@ -23,12 +23,15 @@ namespace Prog5Assessment.Controllers
 
         private void CheckStep(int step)
         {
+            //kijken of de gebruiker ook echt in de huidige stap hoort
             if (Session["reservationStep"] == null)
             {
+                //terug naar stap 1
                 Response.Redirect("~/Reservation/Step1");
             }
             else if ((int)Session["reservationStep"] < step)
             {
+                //terug naar stap 1
                 Session["reservationStep"] = 0;
                 Response.Redirect("~/Reservation/Step1");
             }
@@ -37,6 +40,7 @@ namespace Prog5Assessment.Controllers
 
         private Boolean isValid(Voucher givenVoucher)
         {
+            //kijken of de voucher geldig is op de huidige datum
             if (givenVoucher.DateStart > DateTime.Now || givenVoucher.DateEnd < DateTime.Now)
             {
                 return false;
@@ -49,14 +53,16 @@ namespace Prog5Assessment.Controllers
 
         private int GetAvailableSeats(Movie currentMovie)
         {
+            //lijst genereren
             List<Reservation> reservationList = context.Reservation.Where(c => c.MovieId == currentMovie.Id).ToList();
             int seatsTaken = 0;
             int availableSeats;
+            //aantal bezette plaatsen berekenen
             foreach (Reservation reservation in reservationList)
             {
                 seatsTaken += reservation.Guests;
             }
-
+            //vrije plaatsen berekenen
             Room tempRoom = context.Room.Where(c => c.Id == currentMovie.RoomId).ToList()[0];
             availableSeats = tempRoom.Seats;
             availableSeats -= seatsTaken;
@@ -66,6 +72,7 @@ namespace Prog5Assessment.Controllers
         [HttpGet]
         public ActionResult Step1()
         {
+            //het zetten van de reservationId
             List<Reservation> reservationList = context.Reservation.ToList();
             if ((reservationList.Count == 0 || reservationList == null))
             {
@@ -86,6 +93,7 @@ namespace Prog5Assessment.Controllers
         {
             if(reservationInfo.Guests <= 0)
             {
+                //er wordt een aantal personen kleiner of gelijk aan 0 opgegeven
                 ViewData["ErrorMessage"] = "Een reservering moet voor minimaal 1 persoon gemaakt worden.";
                 return View();
             }
@@ -109,22 +117,26 @@ namespace Prog5Assessment.Controllers
             List<SelectListItem> li = new List<SelectListItem>();
             if (context.Movie.ToList().Count() == 0)
             {
+                //er bestaan geen films in de database
                 li.Add(new SelectListItem { Text = "No Movies available", Value = "-1" });
                 ViewData["moviesAvailable"] = false;
                 Session["moviesAvailable"] = false;
             }
             else
             {
+                //er bestaan films in de database
                 li.Add(new SelectListItem { Text = "Select ...", Value = "-1" });
                 foreach (var movie in context.Movie.ToList())
                 {
                     if (GetAvailableSeats(movie) >= (int)Session["numberOfGuests"])
                     {
+                        //aantal vrije plaatsen is groter dan het aantal gasten
                         li.Add(new SelectListItem { Text = movie.Name + " at " +movie.Date, Value = "" + movie.Id });
                     }
                 }
                 if (li.Count() == 1)
                 {
+                    //er is geen film toegevoegd aan de lijst
                     ViewData["moviesAvailable"] = false;
                     Session["moviesAvailable"] = false;
                 }
@@ -143,12 +155,13 @@ namespace Prog5Assessment.Controllers
             string s = Request.Form["MovieId"];
             if (Convert.ToInt32(s) == -1)
             {
+                //de gebruiker heeft geen film geselecteerd
                 ViewData["ErrorMessage"] = "Selecteer een film";
                 ViewData["moviesAvailable"] = Session["moviesAvailable"];
                 ViewData["movies"] = Session["movies"];
                 return View();
             }
-
+            //movieId opslaan in session
             Session["reservationMovieId"] = Request.Form["MovieId"];
             Session["reservationStep"] = 3;
             Response.Redirect("~/Reservation/Step3");
@@ -171,6 +184,7 @@ namespace Prog5Assessment.Controllers
             Guest tempGuest;
             for(int i = 0; i < (int)Session["numberOfGuests"]; i++)
             {
+                //voor elke gast
                 tempGuest = new Guest();
                 tempGuest.FirstName = Request.Form.GetValues("FirstName[]")[i];
                 tempGuest.LastName = Request.Form.GetValues("LastName[]")[i];
@@ -208,12 +222,6 @@ namespace Prog5Assessment.Controllers
             int priceMovie = tempMovie.Price;
             int priceTotal = numberOfPeople * priceMovie;
             Session["TotalPriceNoDiscount"] = priceTotal;
-
-            int i = reservationInfo.BankAccount;
-            Session["reservationBankAccount"] = reservationInfo.BankAccount;
-            Session["reservationInvoiceAddress"] = reservationInfo.InvoiceAddress;
-            Session["reservationInvoiceCity"] = reservationInfo.InvoiceCity;
-            Session["reservationInvoicePostal"] = reservationInfo.InvoicePostal;
 
             string tempVoucherCode = Request.Form["VoucherCode"];
             List<Voucher> tempVoucherList = context.Voucher.Where(c => c.Code == tempVoucherCode).ToList();
@@ -294,18 +302,13 @@ namespace Prog5Assessment.Controllers
         {
             CheckStep(6);
 
-            Session["reservationBankAccount"] = reservationInfo.BankAccount;
-            Session["reservationInvoiceAddress"] = reservationInfo.InvoiceAddress;
-            Session["reservationInvoiceCity"] = reservationInfo.InvoiceCity;
-            Session["reservationInvoicePostal"] = reservationInfo.InvoicePostal;
-
             int tempVoucherId = (int)Session["reservationSelectedVoucherId"];
 
             if (tempVoucherId != -1)
             {
                 reservationInfo.VoucherId = tempVoucherId;
             }
-
+            //invullen van alle gegevens
             reservationInfo.Id = (int)Session["reservationId"];
             reservationInfo.MovieId = (Convert.ToInt32((String)Session["reservationMovieId"]));
             reservationInfo.PriceTotal = (int)Session["reservationPriceTotal"];
