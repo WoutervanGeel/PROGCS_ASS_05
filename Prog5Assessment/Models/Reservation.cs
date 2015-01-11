@@ -12,7 +12,7 @@ namespace Prog5Assessment.Models
 
         [Key]
         public int Id { get; set; }
-        public Movie PlayedMovie { get; set; }
+        public int MovieId { get; set; }
         public int PriceTotal { get; set; }
         [Required]
         public string InvoiceAddress { get; set; }
@@ -22,7 +22,7 @@ namespace Prog5Assessment.Models
         public string InvoicePostal { get; set; }
         [Required]
         public int BankAccount { get; set; }
-        public Voucher SelectedVoucher { set; get; }
+        public int VoucherId { set; get; }
         public int Guests { get; set; }
     }
 }

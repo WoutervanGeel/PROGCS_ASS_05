@@ -92,23 +92,23 @@ namespace Prog5Assessment.Controllers
         public ActionResult Create(Models.Movie movie)
         {
             // todo: check of zaal beschikbaar is
-            string roomId = Request.Form["roomsdropdown"];
-            var dbRoom = context.Room.SingleOrDefault(x => x.Id == Convert.ToInt32(roomId));
+            int roomId = Convert.ToInt32(Request.Form["roomsdropdown"]);
+            var dbRoom = context.Room.SingleOrDefault(x => x.Id == roomId);
             if (dbRoom == null)
             {
                 ModelState.AddModelError("Room", "Room does not exist!");
             }
             else
             {
-                var movieList = context.Movie.ToList();
-                //if (movieList.Count() > 0)
-                if(false)
+                var movieList = context.Movie.Where(c => (movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration) && System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date) || (System.Data.Objects.EntityFunctions.AddMinutes(movie.Date, movie.Duration) > c.Date && movie.Date < System.Data.Objects.EntityFunctions.AddMinutes(c.Date, c.Duration))).ToList();
+                if (movieList.Count() > 0)
                 {
                     ModelState.AddModelError("Room", "Room already taken!");
                 }
                 else
                 {
                     // no errors
+                    movie.Room = dbRoom;
                     context.Movie.Add(movie);
                     context.SaveChanges();
                     Response.Redirect("~/Movie/");

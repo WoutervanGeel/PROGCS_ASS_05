@@ -5,7 +5,6 @@
 }
 
 <h2>Step2</h2>
-<p style="color: red">@ViewData["ErrorMessage"]</p>
 
 @using (Html.BeginForm())
 {
@@ -16,7 +15,7 @@
         <legend>Reservation</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(m => m.PlayedMovie)
+            Selecteer een film
         </div>
         <div class="editor-field">
             @Html.DropDownList("MovieId", ViewData["movies"] as List<SelectListItem>)

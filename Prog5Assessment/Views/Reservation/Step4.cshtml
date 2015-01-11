@@ -48,11 +48,10 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.SelectedVoucher.Code)
+            Voucher
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.SelectedVoucher.Code)
-            @Html.ValidationMessageFor(model => model.SelectedVoucher.Code)
+            @Html.TextBox("VoucherCode")
         </div>
 
         <p>
