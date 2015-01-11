@@ -1,6 +1,14 @@
 ﻿$(function () {
-
+    
+    $("div").tooltip({
+        show: {
+            effect: "slideDown",
+            delay: 250
+        }
+    });
+    
     $(".datepicker").each(function () {
+
         var dateinput = $(this).val();
         if (dateinput.length > 0) {
             var correctDate = dateConvert(dateinput);
@@ -16,6 +24,16 @@
             });
         }
         else {
+
+            var currentdate = new Date();
+            var datetime = currentdate.getFullYear() + "-"
+                        + (currentdate.getMonth() + 1) + "-"
+                        + currentdate.getDate() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + 00;
+            $(this).val(datetime);
+
             $(this).datetimepicker({
                 formatTime: 'H:i',
                 formatDate: 'Y-m-d',
@@ -24,7 +42,9 @@
                 onChangeDateTime: function (dp, $input) {
                     $(this).val($input.val());
                 }
+
             });
+
         }
 
     });
@@ -40,11 +60,11 @@ function dateConvert(value) {
     }
 
     var year = datevalues[2];
-    
+
     var month = datevalues[1];
     if (month <= 9)
         month = '0' + month;
-   
+
     var day = datevalues[0];
     if (day <= 9)
         day = '0' + day;

@@ -13,13 +13,21 @@
     @Scripts.Render("~/bundles/jqueryui")
 </head>
 <body>
-    @RenderBody()
 
-    @Html.ActionLink("Zalen overzicht", "Index", "Room")
-    @Html.ActionLink("Films overzicht", "Index", "Movie")
-    @Html.ActionLink("Coupon toevoegen", "Index", "Voucher")
-    @Html.ActionLink("Reservation toevoegen", "Step1", "Reservation")
-
+    <div id="sidebar">
+        <ul>
+            <li class="title">Bezoekers</li>
+            <li>@Html.ActionLink("Reserveren", "Step1", "Reservation")</li>
+            <li class="title">Beheer</li>
+            <li>@Html.ActionLink("Films", "Index", "Movie")</li>
+            <li>@Html.ActionLink("Kortingscodes", "Index", "Voucher")</li>
+            <li>@Html.ActionLink("Zalen", "Index", "Room")</li>
+        </ul>
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    <span class="clear"></span>
     @RenderSection("scripts", required: false)
 </body>
 </html>

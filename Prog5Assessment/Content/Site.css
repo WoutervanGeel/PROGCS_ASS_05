@@ -59,3 +59,54 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+/* --------------   */
+
+html, body {
+    margin:0;
+    font:14px/16px Verdana, Arial, sans-serif;
+}
+.clear {
+    clear:both;
+    height:0px;
+    display:block;
+    overflow:hidden;
+}
+#sidebar {
+    width:200px;
+    padding:15px;
+    float:left;
+    line-height:20px;
+}
+
+#sidebar li {
+    padding:0 0 0 6px;
+}
+
+#sidebar a {
+    color:#333;
+    text-decoration:none;
+}
+
+#sidebar a:hover {
+    text-decoration:underline;
+}
+
+#sidebar li.title {
+    background:#eee;
+    font-weight:bold;
+}
+
+#content {
+    float:left;
+    width:500px;
+    padding:0 15px 15px 15px;
+
+}
+
+#sidebar ul {
+    width:192px;
+    list-style:none;
+    margin:0;
+    padding:3px;
+}
