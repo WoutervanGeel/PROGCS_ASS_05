@@ -146,10 +146,6 @@ namespace Prog5Assessment.Controllers
 
         }
 
-        public string getRoomName()
-        {
-            return "test";
-        }
 
     }
 }

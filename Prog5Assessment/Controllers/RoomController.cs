@@ -101,6 +101,7 @@ namespace Prog5Assessment.Controllers
             if(context.Room.Count() >= 4)
             {
                 // error
+                ModelState.AddModelError("", "There are already 4 rooms!");
                 return View();
             }
 
