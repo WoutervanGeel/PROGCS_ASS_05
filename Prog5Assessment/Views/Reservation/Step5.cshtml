@@ -20,8 +20,37 @@
         </div>
         <div>
             @{
+                
                 int TotalPrice = (int)ViewData["TotalPrice"];
-                @TotalPrice
+                int TotalPriceNoDiscount = (int)ViewData["TotalPriceNoDiscount"];
+                int Discount = (int)ViewData["reservationDiscount"];
+                
+                <table>
+                    <tr>
+                        <td>
+                            Price:
+                        </td>
+                        <td>
+                            @TotalPriceNoDiscount
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Korting:
+                        </td>
+                        <td>
+                            @Discount
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total:
+                        </td>
+                        <td>
+                            @TotalPrice
+                        </td>
+                    </tr>
+                </table>
             }
         </div>
 
