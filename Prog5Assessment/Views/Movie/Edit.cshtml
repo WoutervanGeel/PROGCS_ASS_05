@@ -46,47 +46,7 @@
             @Html.ValidationMessageFor(model => model.Date)
         </div>
         <script>
-            $(function () {
-                
-                var correctDate = dateConvert($(".datepicker").val());
-                //$(".datepicker").val(correctDate);
-             
-                $(".datepicker").datetimepicker({
-                    value:correctDate,
-                    formatTime: 'H:i',
-                    formatDate: 'Y-m-d',
-                    step: 5,
-                    inline: true,
-                    onChangeDateTime: function (dp, $input) {
-                        $(".datepicker").val($input.val());
-                    }
-                });
-            });
-            function dateConvert(value)
-            {
-                var datetime = value.split(' ');
-                var datevalues = datetime[0].split('-');
-                var timevalues = datetime[1].split(':');
-
-                if (datevalues[0].length > 2)
-                {
-                    return value;
-                }
-                var date = new Date(datevalues[2], datevalues[1], datevalues[0]);
-
-                var year = date.getFullYear();
-
-                var month = date.getMonth();
-                if (month <= 9)
-                    month = '0' + month;
-
-                var day = date.getDate();
-                if (day <= 9)
-                    day = '0' + day;
-
-                var prettyDate = year + '/' + month + '/' + day + " " + timevalues[0] + ":" + timevalues[1];
-                return prettyDate;
-            }
+            
         </script>
         <div class="editor-label">
             @Html.LabelFor(model => model.Duration)
